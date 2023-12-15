@@ -5,10 +5,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import rs.ac.uns.ftn.informatika.jpa.dto.response.ResponsePanicUserDTO;
-import rs.ac.uns.ftn.informatika.jpa.dto.response.ResponseUserDTO;
 import rs.ac.uns.ftn.informatika.jpa.dto.response.ResponseUserWithIdDTO;
-import rs.ac.uns.ftn.informatika.jpa.model.enums.Provider;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.Role;
 
 import javax.persistence.*;
@@ -49,17 +46,12 @@ public class User implements UserDetails {
 
     private boolean blocked;
 
-    private boolean active;
-
     private String resetPasswordToken;
 
     private LocalDateTime resetPasswordTokenExpiration;
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @Enumerated(EnumType.STRING)
-    private Provider provider;
 
     @JsonIgnore
     @Override
@@ -116,10 +108,9 @@ public class User implements UserDetails {
         this.address = address;
         this.password = password;
         this.blocked = blocked;
-        this.active = active;
     }
 
-    public User(String firstName, String lastName, String picture, String phoneNumber, String email, String address, boolean blocked, boolean active) {
+    public User(String firstName, String lastName, String picture, String phoneNumber, String email, String address, boolean blocked) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
@@ -127,10 +118,9 @@ public class User implements UserDetails {
         this.email = email;
         this.address = address;
         this.blocked = blocked;
-        this.active = active;
     }
 
-    public User(Long id, String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password, boolean blocked, boolean active) {
+    public User(Long id, String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password, boolean blocked) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -140,7 +130,6 @@ public class User implements UserDetails {
         this.address = address;
         this.password = password;
         this.blocked = blocked;
-        this.active = active;
     }
 
     public User(Long id, String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password) {
@@ -153,7 +142,6 @@ public class User implements UserDetails {
         this.address = address;
         this.password = password;
         this.blocked = false;
-        this.active = false;
     }
 
     public User(String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password) {
@@ -170,16 +158,8 @@ public class User implements UserDetails {
         this.resetPasswordTokenExpiration = resetPasswordTokenExpiration;
     }
 
-    public ResponseUserDTO parseToResponseUser(){
-        return new ResponseUserDTO(this.firstName, this.lastName, this.picture, this.phoneNumber, this.email, this.address);
-    }
-
     public ResponseUserWithIdDTO parseToResponseUserWithId(){
         return new ResponseUserWithIdDTO(this.id, this.firstName, this.lastName, this.picture, this.phoneNumber, this.email, this.address);
     }
 
-    public ResponsePanicUserDTO parseToPanicResponse(){
-        return new ResponsePanicUserDTO(this.firstName, this.lastName, this.picture, this.phoneNumber, this.email, this.address);
-    }
 }
-

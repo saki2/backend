@@ -44,17 +44,6 @@ public class TokenUtils implements Serializable {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}
 
-//	public String getRoleFromToken(String token) {
-//		Map<String, Object> claims;
-//		claims = getAllClaimsFromToken(token);
-//		return (String) claims.get("role");
-//	}
-//
-//	public int getUserIdFromToken(String token) {
-//		Map<String, Object> claims;
-//		claims = getAllClaimsFromToken(token);
-//		return (int) claims.get("id");
-//	}
 
 	private Boolean isTokenExpired(String token){
 		final Date expiration = getExpirationDateFromToken(token);
