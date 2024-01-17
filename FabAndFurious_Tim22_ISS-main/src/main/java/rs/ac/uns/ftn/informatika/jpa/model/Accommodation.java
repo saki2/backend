@@ -41,9 +41,10 @@ public class Accommodation {
     private int maxGuest;
     private AccommodationRequestStatus status;
     private Long hostId;
+    private int percentage_of_price_increase; // uvecanje cene npr vikendom
+    private int cancellationDeadline; // broj dana pre pocetka rezervacije
 
-
-    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId) {
+    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -63,9 +64,11 @@ public class Accommodation {
         this.maxGuest = maxGuest;
         this.status = status;
         this.hostId = hostId;
+        this.percentage_of_price_increase =percentage_of_price_increase;
+        this.cancellationDeadline = cancellationDeadline;
     }
 
-    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId) {
+    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -83,9 +86,11 @@ public class Accommodation {
         this.maxGuest = maxGuest;
         this.status = status;
         this.hostId = hostId;
+        this.percentage_of_price_increase = percentage_of_price_increase;
+        this.cancellationDeadline = cancellationDeadline;
     }
 
-    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId) {
+    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.name = name;
         this.description = description;
         this.location = location;
@@ -102,9 +107,11 @@ public class Accommodation {
         this.maxGuest = maxGuest;
         this.status = status;
         this.hostId = hostId;
+        this.percentage_of_price_increase = percentage_of_price_increase;
+        this.cancellationDeadline = cancellationDeadline;
     }
 
-    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId) {
+    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<Date> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.name = name;
         this.description = description;
         this.location = location;
@@ -123,5 +130,7 @@ public class Accommodation {
         this.maxGuest = maxGuest;
         this.status = status;
         this.hostId = hostId;
+        this.percentage_of_price_increase = percentage_of_price_increase;
+        this.cancellationDeadline = cancellationDeadline;
     }
 }

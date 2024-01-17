@@ -16,5 +16,6 @@ public class Rating {
     private Long id;
     private int rating;
     private String comment;
+    //dodati bool da li je obrisano ili ne
 
 }
