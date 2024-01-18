@@ -16,6 +16,13 @@ public class Rating {
     private Long id;
     private int rating;
     private String comment;
-    //dodati bool da li je obrisano ili ne
+    private boolean deleted;
+    private int accommodationId;
 
+    public Rating(int rating, String comment, boolean deleted, int accommodationId) {
+        this.rating = rating;
+        this.comment = comment;
+        this.deleted = deleted;
+        this.accommodationId = accommodationId;
+    }
 }

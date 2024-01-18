@@ -21,6 +21,7 @@ insert into HOST(id) values (4)
 insert into USERS(address, blocked, email, first_name, last_name, password, phone_number, picture, role) values ( 'Bulevar oslobodjenja 7, Novi Sad', false, 'mirko.mirkovic@gmail.com', 'Mirko', 'Mirkovic', '$2a$10$bm0/QkZmhQEQVI8LwFV9QeescIjZjdJSHre/xK2lJw020xCHJxV0m', '0645879458', 'picture', 'HOST')
 insert into HOST(id) values (5)
 --
+
 --accommodations
 -- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Apartman Slavica 1', 'Spacious and comfortable apartment located in a quiet part of the city.', 'Bulevar Kralja Petra 1, Novi Sad', 'ROOM', true, true, true, true, null, 'PerAccommodation', 100, 'NON-AUTOMATIC', 2, 'PENDING', 4);
 --
@@ -30,6 +31,6 @@ insert into HOST(id) values (5)
 --
 -- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Apartman Slavica 4', 'Spacious and comfortable apartment located in a quiet part of the city.', 'Bulevar Kralja Petra 1, Beograd', 'ROOM', true, true, true, true, ARRAY['2023-12-16':: date], 'PerAccommodation', 100, 'NON-AUTOMATIC', 2,3, 'ACCEPTED', 4);
 --
--- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Studio 11', 'Spacious and comfortable studio located in a quiet part of the city.', 'Jevrejska 14, Novi Sad', 'STUDIO', true, true, true, true, ARRAY['2023-12-16':: date], 'PerPerson', 80, 'AUTOMATIC', 2,5, 'PENDING', 5);
+-- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Studio 11', 'Spacious and comfortable studio located in a quiet part of the city.', 'Jevrejska 14, Novi Sad',                     'STUDIO', true, true, true, true, ARRAY['2023-12-16':: date], 'PerPerson', 80, 'AUTOMATIC', 2,5, 'PENDING', 5);
 --
--- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Studio 22', 'Spacious and comfortable studio located in a quiet part of the city.', 'Jevrejska 15, Novi Sad', 'STUDIO', true, true, true, true, ARRAY['2023-12-16':: date], 'PerPerson', 80, 'AUTOMATIC', 2,6, 'ACCEPTED', 5);
+-- INSERT INTO accommodation (name, description, location, type, wifi, kitchen, air_conditioner, parking, availability, payment, price, booking_method, min_guest, max_guest, status, host_id) VALUES ('Studio 22', 'Spacious and comfortable studio located in a quiet part of the city.', 'Jevrejska 15, Novi Sad',                      'STUDIO', true, true, true, true, ARRAY['2023-12-16':: date], 'PerPerson', 80, 'AUTOMATIC', 2,6, 'ACCEPTED', 5);
