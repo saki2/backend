@@ -12,7 +12,8 @@ import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.Reservation;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.*;
 import rs.ac.uns.ftn.informatika.jpa.repository.AccommodationRepository;
-import rs.ac.uns.ftn.informatika.jpa.repository.RatingReportRepository;
+import rs.ac.uns.ftn.informatika.jpa.repository.RatingRepository;
+import rs.ac.uns.ftn.informatika.jpa.repository.ReportRepository;
 import rs.ac.uns.ftn.informatika.jpa.repository.ReservationRepository;
 
 import java.util.Arrays;
@@ -26,7 +27,9 @@ public class JpaExampleApplication {
 	@Autowired
 	ReservationRepository reservationRepository;
 	@Autowired
-	RatingReportRepository ratingReportRepository;
+	ReportRepository reportRepository;
+	@Autowired
+	RatingRepository ratingRepository;
 
 	public static void main(String[] args) {
 
@@ -65,16 +68,18 @@ public class JpaExampleApplication {
 		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2);
 		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2);
 		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2);
-		List<Rating> ratins = Arrays.asList(r1,r2,r3,r4);
-		a1.setRatings(ratins);
-		accommodationRepository.save(a1);
+
+		ratingRepository.save(r1);
+		ratingRepository.save(r2);
+		ratingRepository.save(r3);
+		ratingRepository.save(r4);
 
 		Report rr1 = new Report(1, null, null);
 		Report rr2 = new Report(null, 4, null);
 		Report rr3 = new Report(1, null, 2);
-		ratingReportRepository.save(rr1);
-		ratingReportRepository.save(rr2);
-		ratingReportRepository.save(rr3);
+		reportRepository.save(rr1);
+		reportRepository.save(rr2);
+		reportRepository.save(rr3);
 
 		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
 		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);

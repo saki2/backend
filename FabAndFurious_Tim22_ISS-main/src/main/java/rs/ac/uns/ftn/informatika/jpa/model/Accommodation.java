@@ -34,7 +34,7 @@ public class Accommodation {
     private int price;
     private BookingMethod bookingMethod;
     @OneToMany(cascade = {CascadeType.ALL})
-    private List<Rating> ratings;
+    private List<Rating> ratings; // ne koristi se
     @ElementCollection
     private List<String> photos;
     private int minGuest;
