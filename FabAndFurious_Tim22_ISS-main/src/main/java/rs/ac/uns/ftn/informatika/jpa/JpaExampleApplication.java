@@ -8,12 +8,13 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Bean;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
 import rs.ac.uns.ftn.informatika.jpa.model.Rating;
+import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.Reservation;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.*;
 import rs.ac.uns.ftn.informatika.jpa.repository.AccommodationRepository;
+import rs.ac.uns.ftn.informatika.jpa.repository.RatingReportRepository;
 import rs.ac.uns.ftn.informatika.jpa.repository.ReservationRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class JpaExampleApplication {
 	AccommodationRepository accommodationRepository;
 	@Autowired
 	ReservationRepository reservationRepository;
+	@Autowired
+	RatingReportRepository ratingReportRepository;
 
 	public static void main(String[] args) {
 
@@ -45,12 +48,12 @@ public class JpaExampleApplication {
 		List<String> availability5 = Arrays.asList("01/15/2024", "01/16/2024","01/17/2024", "01/18/2024","01/19/2024", "01/20/2024");
 		List<String> availability6 = Arrays.asList("01/25/2024", "01/26/2024","01/27/2024", "01/28/2024","01/29/2024", "01/30/2024");
 
-		Accommodation a1 = new Accommodation("Apartman Slavica 1", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability1, Payment.PerPerson, 100, BookingMethod.AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("2"), 10, 5);
-		Accommodation a3 = new Accommodation("Apartman Slavica 3", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability2, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("2"), 10, 5);
-		Accommodation a2 = new Accommodation("Apartman Slavica 2", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability3, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("2"), 20, 7);
-		Accommodation a4 = new Accommodation("Apartman Slavica 4", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability4, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("2"), 50, 7);
-		Accommodation a5 = new Accommodation("Studio 11", "Spacious studio located in city center.", "Jevrejska 14, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability5, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.PENDING, Long.parseLong("2"), 0, 2);
-		Accommodation a6 = new Accommodation("Studio 12", "Spacious studio located in city center.", "Jevrejska 15, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability6, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.ACCEPTED, Long.parseLong("2"), 5, 2);
+		Accommodation a1 = new Accommodation("Apartman Slavica 1", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability1, Payment.PerPerson, 100, BookingMethod.AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5);
+		Accommodation a3 = new Accommodation("Apartman Slavica 3", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability2, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5);
+		Accommodation a2 = new Accommodation("Apartman Slavica 2", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability3, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 20, 7);
+		Accommodation a4 = new Accommodation("Apartman Slavica 4", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability4, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 50, 7);
+		Accommodation a5 = new Accommodation("Studio 11", "Spacious studio located in city center.", "Jevrejska 14, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability5, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 0, 2);
+		Accommodation a6 = new Accommodation("Studio 12", "Spacious studio located in city center.", "Jevrejska 15, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability6, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 5, 2);
 
 		accommodationRepository.save(a2);
 		accommodationRepository.save(a3);
@@ -58,13 +61,20 @@ public class JpaExampleApplication {
 		accommodationRepository.save(a5);
 		accommodationRepository.save(a6);
 
-		Rating r1 = new Rating(5, null, false, 1);
-		Rating r2 = new Rating(5, "Great apartment", false, 1);
-		Rating r3 = new Rating(4, "Comfortable apartment", false, 1);
-		Rating r4 = new Rating(5, null, true, 1);
+		Rating r1 = new Rating(1, null, RatingStatus.ACCEPTED,RatingType.HOST, 1, 2);
+		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2);
+		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2);
+		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2);
 		List<Rating> ratins = Arrays.asList(r1,r2,r3,r4);
 		a1.setRatings(ratins);
 		accommodationRepository.save(a1);
+
+		Report rr1 = new Report(1, null, null);
+		Report rr2 = new Report(null, 4, null);
+		Report rr3 = new Report(1, null, 2);
+		ratingReportRepository.save(rr1);
+		ratingReportRepository.save(rr2);
+		ratingReportRepository.save(rr3);
 
 		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
 		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
