@@ -66,5 +66,10 @@ public class RatingController {
         List<Rating> ratings = ratingService.getAllAccommodationRatings(accommodationId);
         return ResponseEntity.ok(ratings);
     }
+    @GetMapping
+    public ResponseEntity<List<Rating>> getAllRatings() {
+        List<Rating> ratings = ratingService.getAll();
+        return ResponseEntity.ok(ratings);
+    }
 
 }
