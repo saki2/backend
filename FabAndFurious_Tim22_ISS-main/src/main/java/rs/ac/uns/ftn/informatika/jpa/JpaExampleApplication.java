@@ -58,16 +58,17 @@ public class JpaExampleApplication {
 		Accommodation a5 = new Accommodation("Studio 11", "Spacious studio located in city center.", "Jevrejska 14, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability5, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 0, 2);
 		Accommodation a6 = new Accommodation("Studio 12", "Spacious studio located in city center.", "Jevrejska 15, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability6, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 5, 2);
 
+		accommodationRepository.save(a1);
 		accommodationRepository.save(a2);
 		accommodationRepository.save(a3);
 		accommodationRepository.save(a4);
 		accommodationRepository.save(a5);
 		accommodationRepository.save(a6);
 
-		Rating r1 = new Rating(1, null, RatingStatus.ACCEPTED,RatingType.HOST, 1, 2);
-		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2);
-		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2);
-		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2);
+		Rating r1 = new Rating(1, null, RatingStatus.ACCEPTED,RatingType.HOST, 1, 2,"01/12/2024");
+		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2,"01/13/2024");
+		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2,"01/14/2024");
+		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2,"01/15/2024");
 
 		ratingRepository.save(r1);
 		ratingRepository.save(r2);

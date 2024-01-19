@@ -22,13 +22,15 @@ public class Rating {
     private RatingType type;
     private int accommodationId;
     private int guestId;
+    private String ratingDate;
 
-    public Rating(int rating, String comment, RatingStatus status, RatingType type, int accommodationId, int guestId) {
+    public Rating(int rating, String comment, RatingStatus status, RatingType type, int accommodationId, int guestId, String ratingDate) {
         this.rating = rating;
         this.comment = comment;
         this.status = status;
         this.type = type;
         this.accommodationId = accommodationId;
         this.guestId = guestId;
+        this.ratingDate = ratingDate;
     }
 }
