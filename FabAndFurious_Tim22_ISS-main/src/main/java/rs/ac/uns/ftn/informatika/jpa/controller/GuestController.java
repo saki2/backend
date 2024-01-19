@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.jpa.dto.request.RequestGuestDTO;
+import rs.ac.uns.ftn.informatika.jpa.model.Host;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.Role;
 import rs.ac.uns.ftn.informatika.jpa.model.Guest;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.*;
@@ -38,6 +39,14 @@ public class GuestController {
 
         guestService.add(guest);
         return new ResponseEntity<>(guest.parseToResponse(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Guest> getGuest(@PathVariable("id") String id) {
+
+        Guest guest = this.guestService.getGuest(id).get();
+
+        return ResponseEntity.ok(guest);
     }
 
 }
