@@ -47,13 +47,10 @@ public class RatingController {
         return ResponseEntity.ok(updatedRating);
     }
 
-    @PutMapping("/delete/{rating-id}")
-    public ResponseEntity<Rating> deleteRating(
-            @PathVariable("rating-id") Long ratingId) {
-
-        Rating updatedRating = ratingService.deleteRating(ratingId);
-
-        return ResponseEntity.ok(updatedRating);
+    @DeleteMapping("/delete-rating/{id}")
+    public ResponseEntity<String> deleteRating(@PathVariable Long id) {
+        ratingService.deleteRating(id);
+        return ResponseEntity.ok("Rating with ID " + id + " deleted successfully");
     }
 
     @GetMapping("/get-host-ratings/{host-id}")

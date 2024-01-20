@@ -75,7 +75,7 @@ public class JpaExampleApplication {
 		ratingRepository.save(r3);
 		ratingRepository.save(r4);
 
-		Report rr1 = new Report(1, null, null);
+		Report rr1 = new Report(2, null, null);
 		Report rr2 = new Report(null, 4, null);
 		Report rr3 = new Report(null, null, 2);
 		reportRepository.save(rr1);

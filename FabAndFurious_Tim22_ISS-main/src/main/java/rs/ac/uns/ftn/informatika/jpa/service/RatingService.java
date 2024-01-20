@@ -12,6 +12,7 @@ import rs.ac.uns.ftn.informatika.jpa.repository.RatingRepository;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IRatingService;
 
 import javax.el.PropertyNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,14 +55,6 @@ public class RatingService implements IRatingService {
         return ratingRepository.save(rating);
     }
 
-    @Override
-    public Rating deleteRating(Long ratingId) {
-        Rating rating = ratingRepository.findById(ratingId).orElseThrow(() -> new PropertyNotFoundException("Rating with ID " + ratingId + " not found."));
-
-        rating.setStatus(RatingStatus.DELETED);
-
-        return ratingRepository.save(rating);
-    }
 
     @Override
     public List<Rating> getAllHostRatings(Long hostId) {
@@ -91,5 +84,13 @@ public class RatingService implements IRatingService {
     @Override
     public Optional<Rating> getRating(String id) {
         return  this.ratingRepository.findById(Long.parseLong(id));
+    }
+
+    @Override
+    public void deleteRating(Long id) {
+        Rating existingRating = ratingRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Rating with ID " + id + " not found"));
+
+        ratingRepository.delete(existingRating);
     }
 }

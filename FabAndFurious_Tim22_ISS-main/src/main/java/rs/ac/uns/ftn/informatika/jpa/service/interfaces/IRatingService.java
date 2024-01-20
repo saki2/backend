@@ -14,10 +14,9 @@ public interface IRatingService {
     Rating acceptRatingRequest(Long ratingId);
 
     Rating rejectRatingRequest(Long ratingId);
-
-    Rating deleteRating(Long ratingId);
     List<Rating> getAllHostRatings(Long hostId);
     List<Rating> getAllAccommodationRatings(Long accommodationId);
     Optional<Rating> getRating(String id);
+    void deleteRating(Long id);
 
 }
