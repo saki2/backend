@@ -72,4 +72,12 @@ public class RatingController {
         return ResponseEntity.ok(ratings);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Rating> getRating(@PathVariable("id") String id) {
+
+        Rating rating = this.ratingService.getRating(id).get();
+
+        return ResponseEntity.ok(rating);
+    }
+
 }

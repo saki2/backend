@@ -60,13 +60,16 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody RequestLoginDTO login) {
         try {
             User user = this.userService.findByEmail(login.getEmail()).get();
+            if(!user.isBlocked()){
             ResponseLoginDTO responseLogin = new ResponseLoginDTO();
             responseLogin.setAccessToken(this.tokenUtils.generateToken(user));
             responseLogin.setRefreshToken(this.tokenUtils.generateRefreshToken(user));
             Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            return new ResponseEntity<>(responseLogin, HttpStatus.OK);
+            return new ResponseEntity<>(responseLogin, HttpStatus.OK);}
+            return new ResponseEntity<>("User is BLOCKED!", HttpStatus.BAD_REQUEST);
+
         } catch (Exception e) {
             return new ResponseEntity<>("Wrong username or password!", HttpStatus.BAD_REQUEST);
         }

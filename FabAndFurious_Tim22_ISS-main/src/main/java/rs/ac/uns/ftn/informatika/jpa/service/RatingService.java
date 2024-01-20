@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.jpa.service;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
 import rs.ac.uns.ftn.informatika.jpa.model.Rating;
+import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.AccommodationRequestStatus;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.RatingStatus;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.RatingType;
@@ -13,6 +14,7 @@ import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IRatingService;
 import javax.el.PropertyNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RatingService implements IRatingService {
@@ -85,5 +87,9 @@ public class RatingService implements IRatingService {
             }
         }
         return accommodationRatings;
+    }
+    @Override
+    public Optional<Rating> getRating(String id) {
+        return  this.ratingRepository.findById(Long.parseLong(id));
     }
 }

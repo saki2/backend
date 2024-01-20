@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.jpa.service;
 
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Host;
 import rs.ac.uns.ftn.informatika.jpa.model.Rating;
 import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.repository.ReportRepository;
@@ -9,6 +10,8 @@ import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IReportService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ReportService implements IReportService {
     private ReportRepository reportRepository;
@@ -33,6 +36,11 @@ public class ReportService implements IReportService {
                 .orElseThrow(() -> new EntityNotFoundException("Report with ID " + id + " not found"));
 
         reportRepository.delete(existingReport);
+    }
+
+    @Override
+    public Optional<Report> getReport(String id) {
+        return  this.reportRepository.findById(Long.parseLong(id));
     }
 
 }

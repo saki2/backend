@@ -77,10 +77,10 @@ public class JpaExampleApplication {
 
 		Report rr1 = new Report(1, null, null);
 		Report rr2 = new Report(null, 4, null);
-		Report rr3 = new Report(1, null, 2);
+		Report rr3 = new Report(null, null, 2);
 		reportRepository.save(rr1);
-		reportRepository.save(rr2);
-		reportRepository.save(rr3);
+//		reportRepository.save(rr2);
+//		reportRepository.save(rr3);
 
 		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
 		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Host;
 import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IRatingService;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IReportService;
@@ -37,5 +38,13 @@ public class ReportController {
     public ResponseEntity<List<Report>> getAllReports() {
         List<Report> reports = reportService.getAll();
         return ResponseEntity.ok(reports);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Report> getReport(@PathVariable("id") String id) {
+
+        Report report = this.reportService.getReport(id).get();
+
+        return ResponseEntity.ok(report);
     }
 }
