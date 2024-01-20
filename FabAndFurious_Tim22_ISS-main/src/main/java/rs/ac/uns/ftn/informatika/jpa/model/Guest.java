@@ -16,6 +16,7 @@ import java.util.List;
 public class Guest extends User {
     @ManyToMany
     private List<Accommodation> favoriteAccommodations;
+    //dodati br otkazanih rez
 
     public Guest(String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password) {
         super(firstName, lastName, picture, phoneNumber, email, address, password);
