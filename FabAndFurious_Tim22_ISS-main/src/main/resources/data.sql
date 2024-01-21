@@ -7,10 +7,13 @@ insert into ADMINS(id) values (1)
 --pass: marko123
 insert into USERS(address, blocked, email, first_name, last_name, password, phone_number, picture, role) values ( 'Bulevar oslobodjenja 127, Novi Sad', false, 'marko.markovic@gmail.com', 'Marko', 'Markovic', '$2a$10$pW7xhKHkW/n6UAr1zlrK8OG9lZgio/Ix/K3dltB512sCDRL8h9ZI2', '06652685', 'picture', 'GUEST')
 insert into GUEST(id) values (2)
+insert into GUEST_FAVORITE_ACCOMMODATIONS(guest_id, favorite_accommodations) values (2,1)
+insert into GUEST_FAVORITE_ACCOMMODATIONS(guest_id, favorite_accommodations) values (2,2)
 
 --pass: petar123
 insert into USERS(address, blocked, email, first_name, last_name, password, phone_number, picture, role) values ( 'Bulevar oslobodjenja 2, Novi Sad', false, 'petar.petrovic@gmail.com', 'Petar', 'Petrovic', '$2a$10$cQnYiXJL0XHGoX27SCRLjOhoHRzKWlzkNP5sEXjStrFdtjAntCHH6', '066874521', 'picture', 'GUEST')
 insert into GUEST(id) values (3)
+
 
 --hosts
 --pass: andrea123

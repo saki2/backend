@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Guest;
+import rs.ac.uns.ftn.informatika.jpa.model.Rating;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.AccommodationRequestStatus;
 import rs.ac.uns.ftn.informatika.jpa.repository.AccommodationRepository;
+import rs.ac.uns.ftn.informatika.jpa.repository.GuestRepository;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IAccommodationService;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IUserService;
 
@@ -18,12 +21,14 @@ import java.util.Optional;
 @Service
 public class AccommodationService implements IAccommodationService {
     private AccommodationRepository accommodationRepository;
+    private GuestRepository guestRepository;
     private IUserService userService;
     private static final Logger logger = LoggerFactory.getLogger(AccommodationService.class);
 
 
-    public AccommodationService(AccommodationRepository accommodationRepository) {
+    public AccommodationService(AccommodationRepository accommodationRepository, GuestRepository guestRepository) {
         this.accommodationRepository = accommodationRepository;
+        this.guestRepository = guestRepository;
     }
 
     @Override
@@ -36,6 +41,15 @@ public class AccommodationService implements IAccommodationService {
         List<Accommodation> hostAccommodations = accommodationRepository.findByHostId(hostId);
         System.out.println(hostAccommodations);
         return hostAccommodations;
+    }
+    @Override
+    public List<Accommodation> getFavorites(Long guestId) {
+        Guest guest = guestRepository.findById(guestId).orElseThrow(() -> new EntityNotFoundException("Guest with ID " + guestId + " not found"));
+        List<Accommodation> favAccommodations = new ArrayList<>();
+        for (int favId:guest.getFavoriteAccommodations()){
+            favAccommodations.add(accommodationRepository.findById(Long.valueOf(favId)).orElseThrow(() -> new EntityNotFoundException("Guest with ID " + guestId + " not found")));
+        }
+        return favAccommodations;
     }
 
     @Override

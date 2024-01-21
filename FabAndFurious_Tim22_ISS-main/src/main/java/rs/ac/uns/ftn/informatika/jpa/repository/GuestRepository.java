@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface GuestRepository extends JpaRepository<Guest, Long> {
 
     List<Guest> findAll();
-    Optional<Guest> findById(String Long);
+    Optional<Guest> findById(Long guestId);
 }

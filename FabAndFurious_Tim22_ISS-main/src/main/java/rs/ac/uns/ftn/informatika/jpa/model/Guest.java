@@ -3,8 +3,10 @@ package rs.ac.uns.ftn.informatika.jpa.model;
 import lombok.*;
 import rs.ac.uns.ftn.informatika.jpa.dto.response.ResponseGuestDTO;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @NoArgsConstructor
@@ -14,8 +16,8 @@ import java.util.List;
 @ToString
 @Entity
 public class Guest extends User {
-    @ManyToMany
-    private List<Accommodation> favoriteAccommodations;
+    @ElementCollection
+    private List<Integer> favoriteAccommodations;
     //dodati br otkazanih rez
 
     public Guest(String firstName, String lastName, String picture, String phoneNumber, String email, String address, String password) {

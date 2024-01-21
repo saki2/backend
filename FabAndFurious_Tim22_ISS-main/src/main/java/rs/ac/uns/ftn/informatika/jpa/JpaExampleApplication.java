@@ -69,26 +69,28 @@ public class JpaExampleApplication {
 		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2,"01/13/2024");
 		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2,"01/14/2024");
 		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2,"01/15/2024");
+		Rating r5 = new Rating(5, "Great", RatingStatus.ACCEPTED,RatingType.HOST, 1, 3,"01/15/2024");
 
 		ratingRepository.save(r1);
 		ratingRepository.save(r2);
 		ratingRepository.save(r3);
 		ratingRepository.save(r4);
+		ratingRepository.save(r5);
 
 		Report rr1 = new Report(2, null, null);
 		Report rr2 = new Report(null, 4, null);
 		Report rr3 = new Report(null, null, 2);
-		reportRepository.save(rr1);
+//		reportRepository.save(rr1);
 //		reportRepository.save(rr2);
 //		reportRepository.save(rr3);
 
-		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation3 = new Reservation(1, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation4 = new Reservation(2, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, 2, 15000);
-		Reservation reservation5 = new Reservation(2, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, 2, 15000);
-		Reservation reservation6 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation7 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, 2, 15000);
+		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation3 = new Reservation(1, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation4 = new Reservation(2, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
+		Reservation reservation5 = new Reservation(2, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
+		Reservation reservation6 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation7 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, Long.valueOf(2), 15000);
 		reservationRepository.save(reservation1);
 		reservationRepository.save(reservation2);
 		reservationRepository.save(reservation3);

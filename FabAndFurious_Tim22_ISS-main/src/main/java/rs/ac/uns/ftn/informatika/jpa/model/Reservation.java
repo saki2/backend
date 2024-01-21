@@ -30,12 +30,12 @@ public class Reservation {
     private ReservationRequestStatus status;
 
     @Column(name = "guest_id")
-    private int guestId;
+    private Long guestId;
 
     @Column(name = "price")
     private int price;
 
-    public Reservation(int accommodationId, String start, String end, ReservationRequestStatus status, int guestId, int price) {
+    public Reservation(int accommodationId, String start, String end, ReservationRequestStatus status, Long guestId, int price) {
         this.accommodationId = accommodationId;
         this.startDate = start;
         this.endDate = end;
