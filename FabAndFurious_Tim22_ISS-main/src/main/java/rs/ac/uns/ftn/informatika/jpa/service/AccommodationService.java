@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Rating;
 import rs.ac.uns.ftn.informatika.jpa.model.enums.AccommodationRequestStatus;
 import rs.ac.uns.ftn.informatika.jpa.repository.AccommodationRepository;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IAccommodationService;

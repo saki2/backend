@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Rating;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IAccommodationService;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IUserService;
 
@@ -89,5 +90,13 @@ public class AccommodationController {
 //        propertyService.savePropertyImage(file, propertyId);
 //        return new ResponseEntity<>(new ResponseDto("Property image saved successfully"), HttpStatus.OK);
 //    }
+
+    @GetMapping(value = "accommodation/{id}")
+    public ResponseEntity<Accommodation> getAccommodation(@PathVariable("id") String id) {
+
+        Accommodation accommodation = this.accommodationService.getAccommodation(id).get();
+
+        return ResponseEntity.ok(accommodation);
+    }
 }
 

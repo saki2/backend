@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.jpa.service.interfaces;
 
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
+import rs.ac.uns.ftn.informatika.jpa.model.Rating;
 
 import java.util.List;
 import java.util.Optional;

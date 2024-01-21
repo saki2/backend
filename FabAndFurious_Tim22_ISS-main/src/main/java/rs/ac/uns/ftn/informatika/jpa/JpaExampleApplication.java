@@ -69,16 +69,18 @@ public class JpaExampleApplication {
 		Rating r2 = new Rating(5, "Great apartment", RatingStatus.ACCEPTED, RatingType.ACCOMMODATION, 1, 2,"01/13/2024");
 		Rating r3 = new Rating(4, "Comfortable apartment", RatingStatus.PENDING, RatingType.ACCOMMODATION, 1, 2,"01/14/2024");
 		Rating r4 = new Rating(2, null, RatingStatus.PENDING,RatingType.ACCOMMODATION, 1, 2,"01/15/2024");
+		Rating r5 = new Rating(5, "Great", RatingStatus.ACCEPTED,RatingType.HOST, 1, 3,"01/15/2024");
 
 		ratingRepository.save(r1);
 		ratingRepository.save(r2);
 		ratingRepository.save(r3);
 		ratingRepository.save(r4);
+		ratingRepository.save(r5);
 
 		Report rr1 = new Report(2, null, null);
 		Report rr2 = new Report(null, 4, null);
 		Report rr3 = new Report(null, null, 2);
-		reportRepository.save(rr1);
+//		reportRepository.save(rr1);
 //		reportRepository.save(rr2);
 //		reportRepository.save(rr3);
 
