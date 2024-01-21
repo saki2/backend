@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.jpa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
 import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.Reservation;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IReportService;
@@ -45,4 +46,11 @@ public class ReservationController {
 
         return ResponseEntity.ok(reservation);
     }
+    @GetMapping("/guestReservations/{guestId}")
+    public ResponseEntity<List<Reservation>> getGuestReservations(@PathVariable("guestId") Long guestId) {
+
+        List<Reservation> reservations = reservationService.findByGuestId(guestId);
+        return ResponseEntity.ok(reservations);
+    }
+
 }

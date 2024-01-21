@@ -84,13 +84,13 @@ public class JpaExampleApplication {
 //		reportRepository.save(rr2);
 //		reportRepository.save(rr3);
 
-		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation3 = new Reservation(1, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation4 = new Reservation(2, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, 2, 15000);
-		Reservation reservation5 = new Reservation(2, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, 2, 15000);
-		Reservation reservation6 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, 2, 15000);
-		Reservation reservation7 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, 2, 15000);
+		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation3 = new Reservation(1, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation4 = new Reservation(2, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
+		Reservation reservation5 = new Reservation(2, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
+		Reservation reservation6 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation7 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, Long.valueOf(2), 15000);
 		reservationRepository.save(reservation1);
 		reservationRepository.save(reservation2);
 		reservationRepository.save(reservation3);

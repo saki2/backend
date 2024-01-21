@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.jpa.service;
 
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
 import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.Reservation;
 import rs.ac.uns.ftn.informatika.jpa.repository.ReportRepository;
@@ -41,6 +42,11 @@ public class ReservationService implements IReservationService {
     @Override
     public Optional<Reservation> getReservation(String id) {
         return  this.reservationRepository.findById(Long.parseLong(id));
+    }
+    @Override
+    public List<Reservation> findByGuestId(Long guestId) {
+        List<Reservation> reservations = reservationRepository.findByGuestId(guestId);
+        return reservations;
     }
 
 }

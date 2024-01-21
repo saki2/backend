@@ -22,6 +22,7 @@ public interface IAccommodationService {
     Accommodation rejectAccommodationRequest(Long accommodationId);
 
     List<Accommodation> findByHostId(Long hostId);
+    List<Accommodation> getFavorites(Long guestId);
 
     void deleteAccommodation(Long id);
 }
