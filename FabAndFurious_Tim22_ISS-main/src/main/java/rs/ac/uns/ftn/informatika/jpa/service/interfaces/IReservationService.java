@@ -13,4 +13,6 @@ public interface IReservationService {
     void deleteReservation(Long id);
     Optional<Reservation> getReservation(String id);
     List<Reservation> findByGuestId(Long guestId);
+    List<Reservation> findByHostId(Long hostId);
+    List<Reservation> findByAccommodationId(Long accommodationId);
 }

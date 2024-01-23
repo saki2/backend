@@ -51,12 +51,12 @@ public class JpaExampleApplication {
 		List<String> availability5 = Arrays.asList("01/15/2024", "01/16/2024","01/17/2024", "01/18/2024","01/19/2024", "01/20/2024");
 		List<String> availability6 = Arrays.asList("01/25/2024", "01/26/2024","01/27/2024", "01/28/2024","01/29/2024", "01/30/2024");
 
-		Accommodation a1 = new Accommodation("Apartman Slavica 1", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability1, Payment.PerPerson, 100, BookingMethod.AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5);
-		Accommodation a3 = new Accommodation("Apartman Slavica 3", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability2, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5);
-		Accommodation a2 = new Accommodation("Apartman Slavica 2", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability3, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 20, 7);
-		Accommodation a4 = new Accommodation("Apartman Slavica 4", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability4, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 50, 7);
-		Accommodation a5 = new Accommodation("Studio 11", "Spacious studio located in city center.", "Jevrejska 14, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability5, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 0, 2);
-		Accommodation a6 = new Accommodation("Studio 12", "Spacious studio located in city center.", "Jevrejska 15, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability6, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 5, 2);
+		Accommodation a1 = new Accommodation("Apartman Slavica 1", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability1, Payment.PerPerson, 100, BookingMethod.AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5, "image1");
+		Accommodation a3 = new Accommodation("Apartman Slavica 3", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Novi Sad", AccommodationType.ROOM, true, true, false, true, availability2, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 5, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 10, 5, "image3");
+		Accommodation a2 = new Accommodation("Apartman Slavica 2", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability3, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 20, 7, "image2");
+		Accommodation a4 = new Accommodation("Apartman Slavica 4", "Comfortable apartment located in a quiet part of the city.", "Bulevar Kralja Petra 1, Beograd", AccommodationType.ROOM, true, true, true, false, availability4, Payment.PerAccommodation, 100, BookingMethod.AUTOMATIC, 4, 8, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 50, 7, "image1");
+		Accommodation a5 = new Accommodation("Studio 11", "Spacious studio located in city center.", "Jevrejska 14, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability5, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.PENDING, Long.parseLong("4"), 0, 2, "image3");
+		Accommodation a6 = new Accommodation("Studio 12", "Spacious studio located in city center.", "Jevrejska 15, Novi Sad", AccommodationType.STUDIO, true, false, true, true, availability6, Payment.PerPerson, 100, BookingMethod.NON_AUTOMATIC, 2, 3, AccommodationRequestStatus.ACCEPTED, Long.parseLong("4"), 5, 2, "image2");
 
 		accommodationRepository.save(a1);
 		accommodationRepository.save(a2);
@@ -84,13 +84,15 @@ public class JpaExampleApplication {
 //		reportRepository.save(rr2);
 //		reportRepository.save(rr3);
 
-		Reservation reservation1 = new Reservation(1, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
-		Reservation reservation2 = new Reservation(1, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
-		Reservation reservation3 = new Reservation(1, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
-		Reservation reservation4 = new Reservation(2, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
-		Reservation reservation5 = new Reservation(2, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 15000);
-		Reservation reservation6 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
-		Reservation reservation7 = new Reservation(2, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, Long.valueOf(2), 15000);
+		Reservation reservation1 = new Reservation(1L, "01/16/2024","01/17/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 5000);
+		Reservation reservation2 = new Reservation(1L, "01/18/2024","01/18/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation3 = new Reservation(1L, "01/20/2024","01/24/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation4 = new Reservation(2L, "01/24/2024","01/26/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 1000);
+		Reservation reservation5 = new Reservation(2L, "01/23/2024","01/24/2024", ReservationRequestStatus.PENDING, Long.valueOf(2), 10000);
+		Reservation reservation6 = new Reservation(2L, "01/27/2024","01/29/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 15000);
+		Reservation reservation7 = new Reservation(2L, "01/27/2024","01/29/2024", ReservationRequestStatus.REJECTED, Long.valueOf(2), 15000);
+		Reservation reservation8 = new Reservation(1L, "01/19/2024","01/19/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 5000);
+		Reservation reservation9 = new Reservation(3L, "01/19/2024","01/19/2024", ReservationRequestStatus.ACCEPTED, Long.valueOf(2), 6000);
 		reservationRepository.save(reservation1);
 		reservationRepository.save(reservation2);
 		reservationRepository.save(reservation3);
@@ -98,5 +100,7 @@ public class JpaExampleApplication {
 		reservationRepository.save(reservation5);
 		reservationRepository.save(reservation6);
 		reservationRepository.save(reservation7);
+		reservationRepository.save(reservation8);
+		reservationRepository.save(reservation9);
 	}
 }
