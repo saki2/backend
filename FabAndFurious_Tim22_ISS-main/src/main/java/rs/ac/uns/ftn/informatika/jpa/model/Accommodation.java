@@ -35,8 +35,7 @@ public class Accommodation {
     private BookingMethod bookingMethod;
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Rating> ratings; // ne koristi se
-    @ElementCollection
-    private List<String> photos;
+    private String photos;
     private int minGuest;
     private int maxGuest;
     private AccommodationRequestStatus status;
@@ -44,7 +43,7 @@ public class Accommodation {
     private int percentage_of_price_increase; // uvecanje cene npr vikendom
     private int cancellationDeadline; // broj dana pre pocetka rezervacije
 
-    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<String> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
+    public Accommodation(Long id, String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<String> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, String photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -111,7 +110,7 @@ public class Accommodation {
         this.cancellationDeadline = cancellationDeadline;
     }
 
-    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<String> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, List<String> photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
+    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<String> availability, Payment payment, int price, BookingMethod bookingMethod, List<Rating> ratings, String photos, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline) {
         this.name = name;
         this.description = description;
         this.location = location;
@@ -132,5 +131,27 @@ public class Accommodation {
         this.hostId = hostId;
         this.percentage_of_price_increase = percentage_of_price_increase;
         this.cancellationDeadline = cancellationDeadline;
+    }
+
+    public Accommodation(String name, String description, String location, AccommodationType type, boolean wifi, boolean kitchen, boolean airConditioner, boolean parking, List<String> availability, Payment payment, int price, BookingMethod bookingMethod, int minGuest, int maxGuest, AccommodationRequestStatus status, Long hostId, int percentage_of_price_increase, int cancellationDeadline, String photos) {
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.type = type;
+        this.wifi = wifi;
+        this.kitchen = kitchen;
+        this.airConditioner = airConditioner;
+        this.parking = parking;
+        this.availability = availability;
+        this.payment = payment;
+        this.price = price;
+        this.bookingMethod = bookingMethod;
+        this.minGuest = minGuest;
+        this.maxGuest = maxGuest;
+        this.status = status;
+        this.hostId = hostId;
+        this.percentage_of_price_increase = percentage_of_price_increase;
+        this.cancellationDeadline = cancellationDeadline;
+        this.photos = photos;
     }
 }
