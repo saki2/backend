@@ -12,4 +12,7 @@ public interface IAdminService {
     Optional<Admin> getAdmin(String id);
 
     void add(Admin admin);
+    Admin updateAdmin(Long id, Admin updatedAdmin);
+
+
 }

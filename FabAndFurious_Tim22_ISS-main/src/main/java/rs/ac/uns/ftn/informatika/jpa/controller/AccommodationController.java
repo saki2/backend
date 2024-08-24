@@ -133,5 +133,17 @@ public class AccommodationController {
 
         return ResponseEntity.ok(accommodation);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Accommodation>> searchAccommodations(
+            @RequestParam("location") String location,
+            @RequestParam("numberOfGuests") int numberOfGuests,
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate) {
+
+        List<Accommodation> accommodations = accommodationService.searchAccommodations(location, numberOfGuests, startDate, endDate);
+        return ResponseEntity.ok(accommodations);
+    }
+
 }
 

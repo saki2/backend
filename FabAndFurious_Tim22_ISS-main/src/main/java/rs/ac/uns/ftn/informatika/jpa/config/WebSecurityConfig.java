@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.jpa.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -37,6 +38,7 @@ public class WebSecurityConfig {
     private CustomOAuth2UserService oauth2UserService;
 
     @Autowired
+    @Lazy
     private TokenAuthenticationFilter tokenAuthenticationFilter;
 
     @Autowired
@@ -46,6 +48,7 @@ public class WebSecurityConfig {
     private AuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
+    @Lazy
     private IUserService userService;
 
     @Bean

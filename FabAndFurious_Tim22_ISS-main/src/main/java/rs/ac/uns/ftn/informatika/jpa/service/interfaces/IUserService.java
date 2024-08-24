@@ -12,6 +12,8 @@ public interface IUserService extends UserDetailsService {
 
     List<User> getAll();
 
+    void deleteAccount(Long id);
+
     Optional<User> getUser(String id);
 
     Page<User> findAll(Pageable page);
@@ -23,4 +25,7 @@ public interface IUserService extends UserDetailsService {
     Optional<User> findByEmail(String email);
 
     void processOAuthPostLogin(String email, String name);
+
+    boolean resetPassword(Long userId, String oldPassword, String newPassword);
+
 }

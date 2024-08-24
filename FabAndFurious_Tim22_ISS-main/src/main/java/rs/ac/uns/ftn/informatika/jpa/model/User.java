@@ -50,6 +50,9 @@ public class User implements UserDetails {
 
     private LocalDateTime resetPasswordTokenExpiration;
 
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted = false;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

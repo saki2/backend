@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.jpa.dto.response.ReservationAndAccommodationDTO;
 import rs.ac.uns.ftn.informatika.jpa.model.Accommodation;
 import rs.ac.uns.ftn.informatika.jpa.model.Report;
 import rs.ac.uns.ftn.informatika.jpa.model.ReportItem;
@@ -126,6 +127,41 @@ public class ReservationController {
         }
 
         return ResponseEntity.ok(reservationList);
+    }
+
+    @PutMapping("/accept/{id}")
+    public ResponseEntity<Reservation> acceptReservation(@PathVariable Long id) {
+        Reservation acceptedReservation = reservationService.acceptReservation(id);
+        return ResponseEntity.ok(acceptedReservation);
+    }
+
+    @PutMapping("/decline/{id}")
+    public ResponseEntity<Reservation> declineReservation(@PathVariable Long id) {
+        Reservation declinedReservation = reservationService.declineReservation(id);
+        return ResponseEntity.ok(declinedReservation);
+    }
+    @PutMapping("/cancel/{id}")
+    public ResponseEntity<Reservation> cancelReservation(@PathVariable Long id) {
+        Reservation declinedReservation = reservationService.cancelReservation(id);
+        return ResponseEntity.ok(declinedReservation);
+    }
+
+    @GetMapping("/hostReservationAndAccommodationName/{hostId}")
+    public ResponseEntity<List<ReservationAndAccommodationDTO>> getHostReservationAndAccommodationName(@PathVariable("hostId") Long hostId) {
+        List<ReservationAndAccommodationDTO> reservations = reservationService.getHostReservationAndAccommodationName(hostId);
+        return ResponseEntity.ok(reservations);
+    }
+
+    @GetMapping("/guestReservationAndAccommodationName/{guestId}")
+    public ResponseEntity<List<ReservationAndAccommodationDTO>> getGuestReservationAndAccommodationName(@PathVariable("guestId") Long guestId) {
+        List<ReservationAndAccommodationDTO> reservations = reservationService.getGuestReservationAndAccommodationName(guestId);
+        return ResponseEntity.ok(reservations);
+    }
+
+    @DeleteMapping("/reservations/{id}")
+    public ResponseEntity<String> deleteReservationRequest(@PathVariable("id") Long reservationId) {
+        reservationService.deleteReservationRequest(reservationId);
+        return ResponseEntity.ok("Reservation with ID " + reservationId + " deleted successfully");
     }
 
 }

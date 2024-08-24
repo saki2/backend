@@ -25,4 +25,6 @@ public interface IAccommodationService {
     List<Accommodation> getFavorites(Long guestId);
 
     void deleteAccommodation(Long id);
+
+    List<Accommodation> searchAccommodations(String location, int numberOfGuests, String startDate, String endDate);
 }

@@ -14,7 +14,12 @@ import rs.ac.uns.ftn.informatika.jpa.service.interfaces.IUserService;
 
 import javax.el.PropertyNotFoundException;
 import javax.persistence.EntityNotFoundException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,5 +136,49 @@ public class AccommodationService implements IAccommodationService {
 
         accommodationRepository.delete(existingAccommodation);
     }
+
+    public List<Accommodation> searchAccommodations(String location, int numberOfGuests, String startDate, String endDate) {
+        List<Accommodation> accommodations = accommodationRepository.findByLocationAndGuests(location, numberOfGuests);
+        List<Accommodation> availableAccommodations = new ArrayList<>();
+
+        for (Accommodation accommodation : accommodations) {
+            boolean isAvailable = checkAvailability(accommodation, startDate, endDate);
+            if (isAvailable) {
+                availableAccommodations.add(accommodation);
+            }
+        }
+
+        return availableAccommodations;
+    }
+
+    private boolean checkAvailability(Accommodation accommodation, String startDate, String endDate) {
+        List<String> availabilityDates = fetchAvailabilityDates(accommodation);
+
+        String currentDate = startDate;
+        while (!currentDate.equals(endDate)) {
+            if (!availabilityDates.contains(currentDate)) {
+                return false;
+            }
+            currentDate = nextDate(currentDate);
+        }
+        return availabilityDates.contains(endDate);
+    }
+
+    private List<String> fetchAvailabilityDates(Accommodation accommodation) {
+        return accommodation.getAvailability();
+    }
+
+    private String nextDate(String currentDate) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate date = LocalDate.parse(currentDate, formatter);
+            date = date.plusDays(1);
+            return date.format(formatter);
+        } catch (DateTimeParseException e) {
+            throw new RuntimeException("Greška prilikom parsiranja datuma: " + currentDate, e);
+        }
+    }
+
+
 
 }

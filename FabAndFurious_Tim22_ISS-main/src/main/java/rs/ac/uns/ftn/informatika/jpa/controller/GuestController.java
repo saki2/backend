@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.informatika.jpa.model.Guest;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/guest")
@@ -48,5 +49,24 @@ public class GuestController {
 
         return ResponseEntity.ok(guest);
     }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Guest> updateGuest(@PathVariable("id") String id, @Valid @RequestBody Guest updatedGuest) {
+        Optional<Guest> existingGuest = guestService.getGuest(id);
+
+        if (existingGuest.isPresent()) {
+            Guest guest = guestService.updateGuest(existingGuest.get(), updatedGuest);
+            return ResponseEntity.ok(guest);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{id}/cancelledReservations")
+    public ResponseEntity<Integer> getCancelledReservationsCount(@PathVariable Long id) {
+        int cancelledCount = guestService.getCancelledReservationsCount(id);
+        return new ResponseEntity<>(cancelledCount, HttpStatus.OK);
+    }
+
 
 }

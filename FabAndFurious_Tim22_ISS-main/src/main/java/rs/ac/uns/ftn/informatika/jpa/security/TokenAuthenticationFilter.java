@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.jpa.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,7 @@ import java.io.IOException;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
 	@Autowired
+	@Lazy
 	private IUserService userDetails;
 	@Autowired
 	private TokenUtils jwtTokenUtil;

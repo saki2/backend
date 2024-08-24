@@ -19,9 +19,7 @@ import rs.ac.uns.ftn.informatika.jpa.model.*;
 import rs.ac.uns.ftn.informatika.jpa.service.interfaces.*;
 import rs.ac.uns.ftn.informatika.jpa.util.TokenUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -59,22 +57,36 @@ public class UserController {
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> login(@RequestBody RequestLoginDTO login) {
         try {
-            User user = this.userService.findByEmail(login.getEmail()).get();
-            if(!user.isBlocked()){
+            Optional<User> userOptional = this.userService.findByEmail(login.getEmail());
+            if (!userOptional.isPresent()) {
+                return new ResponseEntity<>("User does not exist!", HttpStatus.BAD_REQUEST);
+            }
+
+            User user = userOptional.get();
+
+            if (user.isBlocked()) {
+                return new ResponseEntity<>("User is BLOCKED!", HttpStatus.BAD_REQUEST);
+            }
+
+            if (user.isDeleted()) {
+                return new ResponseEntity<>("User is DELETED!", HttpStatus.BAD_REQUEST);
+            }
+
+            Authentication authentication = this.authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
             ResponseLoginDTO responseLogin = new ResponseLoginDTO();
             responseLogin.setAccessToken(this.tokenUtils.generateToken(user));
             responseLogin.setRefreshToken(this.tokenUtils.generateRefreshToken(user));
-            Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            return new ResponseEntity<>(responseLogin, HttpStatus.OK);}
-            return new ResponseEntity<>("User is BLOCKED!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(responseLogin, HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>("Wrong username or password!", HttpStatus.BAD_REQUEST);
         }
-
     }
+
 
     @GetMapping(value = "/logout")
     public ResponseEntity<?> logoutUser() {
@@ -110,6 +122,31 @@ public class UserController {
         user.setBlocked(false);
         userService.add(user);
         return new ResponseEntity<>("User is successfully ublocked", HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{id}/resetPassword")
+    public ResponseEntity<Void> resetPassword(@PathVariable Long id, @RequestBody RequestResetPasswordDTO request) {
+        boolean isPasswordReset = userService.resetPassword(id, request.getOldPassword(), request.getNewPassword());
+
+        if (isPasswordReset) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        try {
+            userService.deleteAccount(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An unexpected error occurred: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

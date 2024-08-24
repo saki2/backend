@@ -12,4 +12,7 @@ public interface IGuestService {
 
     void add(Guest guest);
 
+    Guest updateGuest(Guest existingGuest, Guest updatedGuest);
+    int getCancelledReservationsCount(Long guestId);
+
 }

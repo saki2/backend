@@ -31,4 +31,18 @@ public class AdminServiceImpl implements IAdminService {
     public void add(Admin admin) {
         this.adminRepository.save(admin);
     }
+
+    @Override
+    public Admin updateAdmin(Long id, Admin updatedAdmin) {
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Admin not found"));
+        admin.setEmail(updatedAdmin.getEmail());
+        admin.setFirstName(updatedAdmin.getFirstName());
+        admin.setLastName(updatedAdmin.getLastName());
+        admin.setPhoneNumber(updatedAdmin.getPhoneNumber());
+        admin.setAddress(updatedAdmin.getAddress());
+        // other fields update logic here
+        return adminRepository.save(admin);
+    }
+
+
 }
